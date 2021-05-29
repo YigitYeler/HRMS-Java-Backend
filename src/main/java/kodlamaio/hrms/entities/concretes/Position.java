@@ -1,9 +1,14 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "job_positions")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAds"})
 public class Position {
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -12,15 +17,19 @@ public class Position {
 	
 	@Column(name="position_name")
 	private String positionName;
+	
+	@OneToMany(mappedBy = "position")
+	private List<JobAd> jobAds;
 
 	public Position() {
 		
 	}
 	
-	public Position(int id, String positionName) {
+	public Position(int id, String positionName,List<JobAd> jobAds) {
 		super();
 		this.id = id;
 		this.positionName = positionName;
+		this.jobAds = jobAds;
 	}
 
 	public int getId() {
@@ -37,5 +46,13 @@ public class Position {
 
 	public void setPositionName(String positionName) {
 		this.positionName = positionName;
+	}
+
+	public List<JobAd> getJobAds() {
+		return jobAds;
+	}
+
+	public void setJobAds(List<JobAd> jobAds) {
+		this.jobAds = jobAds;
 	}
 }
