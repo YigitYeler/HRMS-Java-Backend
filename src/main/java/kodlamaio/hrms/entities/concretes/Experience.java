@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "experiences")
 public class Experience {
@@ -15,8 +17,8 @@ public class Experience {
 	@Column(name = "work_place_name")
 	private String workPlaceName;
 	
-	@ManyToOne
 	@JoinColumn(name = "position_id")
+	@ManyToOne
 	private Position position;
 	
 	@Column(name = "entry_date")
@@ -25,9 +27,10 @@ public class Experience {
 	@Column(name = "quit_date")
 	private Date quitDate;
 	
-	@JoinColumn(name = "experience_id", insertable = false, updatable = false)
-    @ManyToOne
-    private Portfolio portfolio;
+	@ManyToOne()
+	@JoinColumn(name = "portfolio_id")
+	@JsonIgnore
+	private Portfolio portfolio;
 	
 	public Experience() {
 		

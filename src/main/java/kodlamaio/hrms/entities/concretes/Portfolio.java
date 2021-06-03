@@ -12,13 +12,13 @@ public class Portfolio {
 	@Column(name = "id")
 	private int id;
 	
-	@OneToMany(mappedBy = "portfolio")
+	@OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Education> educations;
 	
-	@OneToMany(mappedBy = "portfolio")
+	@OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Experience> experiences;
 	
-	@OneToMany(mappedBy = "portfolio")
+	@OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Language> languages;
 	
 	@Column(name = "img_url")
@@ -35,7 +35,7 @@ public class Portfolio {
 	}
 
 	public Portfolio(int id, List<Education> educations, List<Experience> experiences, List<Language> languages,
-			String imgUrl, String[] skills, String intro) {
+			String imgUrl, Character[] skills, String intro) {
 		super();
 		this.id = id;
 		this.educations = educations;
@@ -86,11 +86,11 @@ public class Portfolio {
 		this.imgUrl = imgUrl;
 	}
 
-	public String[] getSkills() {
+	public Character[] getSkills() {
 		return skills;
 	}
 
-	public void setSkills(String[] skills) {
+	public void setSkills(Character[] skills) {
 		this.skills = skills;
 	}
 

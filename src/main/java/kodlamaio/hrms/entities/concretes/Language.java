@@ -2,8 +2,10 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "languages")
+@Table(name = "language_table")
 public class Language {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,20 +13,21 @@ public class Language {
 	private int id;
 	
 	@Column(name = "language_name")
-	private int languageName;
+	private String languageName;
 	
 	@Column(name = "language_level")
 	private int languageLevel;
 	
-	@JoinColumn(name = "language_id", insertable = false, updatable = false)
-    @ManyToOne
-    private Portfolio portfolio;
+	@ManyToOne()
+	@JoinColumn(name = "portfolio_id")
+	@JsonIgnore
+	private Portfolio portfolio;
 	
 	public Language(){
 		
 	}
 
-	public Language(int id, int languageName, int languageLevel, Portfolio portfolio) {
+	public Language(int id, String languageName, int languageLevel, Portfolio portfolio) {
 		super();
 		this.id = id;
 		this.languageName = languageName;
@@ -40,11 +43,11 @@ public class Language {
 		this.id = id;
 	}
 
-	public int getLanguageName() {
+	public String getLanguageName() {
 		return languageName;
 	}
 
-	public void setLanguageName(int languageName) {
+	public void setLanguageName(String languageName) {
 		this.languageName = languageName;
 	}
 
