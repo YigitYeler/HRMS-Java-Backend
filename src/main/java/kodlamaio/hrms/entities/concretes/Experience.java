@@ -27,8 +27,11 @@ public class Experience {
 	@Column(name = "quit_date")
 	private Date quitDate;
 	
+	@Column(name = "portfolio_id")
+	private int portfolioId;
+	
 	@ManyToOne()
-	@JoinColumn(name = "portfolio_id")
+	@JoinColumn(name = "portfolio_id",insertable = false,updatable = false)
 	@JsonIgnore
 	private Portfolio portfolio;
 	
@@ -37,7 +40,7 @@ public class Experience {
 	}
 
 	public Experience(int id, String workPlaceName, Position position, Date entryDate, Date quitDate,
-			Portfolio portfolio) {
+			Portfolio portfolio,int portfolioId) {
 		super();
 		this.id = id;
 		this.workPlaceName = workPlaceName;
@@ -45,6 +48,7 @@ public class Experience {
 		this.entryDate = entryDate;
 		this.quitDate = quitDate;
 		this.portfolio = portfolio;
+		this.portfolioId = portfolioId;
 	}
 
 	public int getId() {
@@ -93,6 +97,14 @@ public class Experience {
 
 	public void setPortfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
+	}
+
+	public int getPortfolioId() {
+		return portfolioId;
+	}
+
+	public void setPortfolioId(int portfolioId) {
+		this.portfolioId = portfolioId;
 	}
 
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -19,9 +20,11 @@ public class Position {
 	private String positionName;
 	
 	@OneToMany(mappedBy = "position")
+	@JsonIgnore
 	private List<JobAd> jobAds;
 	
 	@OneToMany(mappedBy = "position")
+	@JsonIgnore
 	private List<Experience> experiences;
 
 	public Position() {

@@ -26,8 +26,11 @@ public class Education {
 	@Column(name = "graduation_date")
 	private Date graduationDate;
 	
+	@Column(name = "portfolio_id")
+	private int portfolioId;
+	
 	@ManyToOne()
-	@JoinColumn(name = "portfolio_id")
+	@JoinColumn(name = "portfolio_id",updatable = false,insertable = false)
 	@JsonIgnore
 	private Portfolio portfolio;
 
@@ -36,7 +39,7 @@ public class Education {
 	}
 
 	public Education(int id, String schoolName, String departmentName, Date entryDate, Date educationDate,
-			Portfolio portfolio) {
+			Portfolio portfolio,int portfolioId) {
 		super();
 		this.id = id;
 		this.schoolName = schoolName;
@@ -44,6 +47,7 @@ public class Education {
 		this.entryDate = entryDate;
 		this.graduationDate = educationDate;
 		this.portfolio = portfolio;
+		this.portfolioId = portfolioId;
 	}
 
 	public int getId() {
@@ -92,6 +96,14 @@ public class Education {
 
 	public void setPortfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
+	}
+
+	public int getPortfolioId() {
+		return portfolioId;
+	}
+
+	public void setPortfolioId(int portfolioId) {
+		this.portfolioId = portfolioId;
 	}
 	
 	

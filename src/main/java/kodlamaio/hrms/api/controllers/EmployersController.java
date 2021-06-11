@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.core.adapters.CloudinaryAdapter;
 import kodlamaio.hrms.core.utilites.results.DataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
 import kodlamaio.hrms.entities.concretes.Employer;
@@ -27,6 +28,8 @@ public class EmployersController {
 	
 	@GetMapping("/getall")
 	public DataResult<List<Employer>> getAll(){
+		CloudinaryAdapter clodinaryAdaptor = new CloudinaryAdapter();
+		clodinaryAdaptor.imgSave(null);
 		return this.employerService.getAll();
 	}
 	

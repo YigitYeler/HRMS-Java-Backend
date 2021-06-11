@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "job_ads")
 public class JobAd {
@@ -19,8 +21,9 @@ public class JobAd {
 	@Column(name = "job_ad_desc")
 	private String description;
 	
-	@Column(name = "job_ad_city")
-	private String city;
+	@ManyToOne()
+	@JoinColumn(name = "job_ad_city_id")
+	private City city;
 	
 	@Column(name = "job_ad_count")
 	private int count;
@@ -41,12 +44,16 @@ public class JobAd {
 	@JoinColumn(name = "job_pos_id")
 	private Position position;
 	
+	@Column(name = "hrms_verify")
+	@JsonIgnore
+	private boolean hrmsVerify = false;
+	
 	public JobAd() {
 		
 	}
 	
-	public JobAd(int id, String companyName, String description, String city, int count, int minSalary,
-			int maxSalary, Date lastDate,boolean isActive,Position position) {
+	public JobAd(int id, String companyName, String description, City city, int count, int minSalary,
+			int maxSalary, Date lastDate,boolean isActive,Position position,boolean hrmsVerify) {
 		super();
 		this.id = id;
 		this.companyName = companyName;
@@ -58,6 +65,7 @@ public class JobAd {
 		this.lastDate = lastDate;
 		this.isActive = isActive;
 		this.position = position;
+		this.hrmsVerify = hrmsVerify;
 	}
 
 	public int getId() {
@@ -84,11 +92,11 @@ public class JobAd {
 		this.description = description;
 	}
 
-	public String getCity() {
+	public City getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 
@@ -138,5 +146,13 @@ public class JobAd {
 
 	public void setPosition(Position position) {
 		this.position = position;
+	}
+
+	public boolean isHrmsVerify() {
+		return hrmsVerify;
+	}
+
+	public void setHrmsVerify(boolean hrmsVerify) {
+		this.hrmsVerify = hrmsVerify;
 	}
 }

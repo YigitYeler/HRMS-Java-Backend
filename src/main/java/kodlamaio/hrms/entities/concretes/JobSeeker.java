@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -26,14 +27,17 @@ public class JobSeeker {
 	private Date birthDate; 
 	
 	@Column(name="verify_email")
-	private boolean verifyEmail;
+	private boolean verifyEmail = false;
+	
+	@OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Portfolio> portfolios;
 
 	public JobSeeker() {
 		
 	}
 
 	public JobSeeker(int id, String nationalityIdentity, String name, String surName, Date birthDate,
-			boolean verifyEmail) {
+			boolean verifyEmail,List<Portfolio> portfolios) {
 		super();
 		this.id = id;
 		this.nationalityIdentity = nationalityIdentity;
@@ -41,6 +45,7 @@ public class JobSeeker {
 		this.surName = surName;
 		this.birthDate = birthDate;
 		this.verifyEmail = verifyEmail;
+		this.portfolios = portfolios;
 	}
 
 	public int getId() {
@@ -89,6 +94,14 @@ public class JobSeeker {
 
 	public void setVerifyEmail(boolean verifyEmail) {
 		this.verifyEmail = verifyEmail;
+	}
+
+	public List<Portfolio> getPortfolios() {
+		return portfolios;
+	}
+
+	public void setPortfolios(List<Portfolio> portfolios) {
+		this.portfolios = portfolios;
 	}
 
 	

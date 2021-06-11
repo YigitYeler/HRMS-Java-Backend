@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.PortfolioService;
 import kodlamaio.hrms.core.utilites.results.DataResult;
@@ -34,5 +35,10 @@ public class PortfoliosController {
 	@GetMapping("/getAll")
 	public DataResult<List<Portfolio>> getAll() {
 		return this.portfolioService.getAll();
+	}
+	
+	@PostMapping("/saveImg")
+	public Result saveImg(@RequestBody MultipartFile myFile, int id) {
+		return this.portfolioService.saveImg(myFile , id);
 	}
 }

@@ -5,36 +5,32 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "language_table")
-public class Language {
+@Table(name = "skills")
+public class Skill {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "language_id")
+	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "language_name")
-	private String languageName;
-	
-	@Column(name = "language_level")
-	private int languageLevel;
+	@Column(name = "skill_name")
+	private String skillName;
 	
 	@Column(name = "portfolio_id")
 	private int portfolioId;
 	
 	@ManyToOne()
-	@JoinColumn(name = "portfolio_id",insertable = false,updatable = false)
+	@JoinColumn(name = "portfolio_id",updatable = false,insertable = false)
 	@JsonIgnore
 	private Portfolio portfolio;
-	
-	public Language(){
+
+	public Skill() {
 		
 	}
-
-	public Language(int id, String languageName, int languageLevel, int portfolioId, Portfolio portfolio) {
+			
+	public Skill(int id, String skillName, Portfolio portfolio,int portfolioId) {
 		super();
 		this.id = id;
-		this.languageName = languageName;
-		this.languageLevel = languageLevel;
+		this.skillName = skillName;
 		this.portfolio = portfolio;
 		this.portfolioId = portfolioId;
 	}
@@ -47,20 +43,12 @@ public class Language {
 		this.id = id;
 	}
 
-	public String getLanguageName() {
-		return languageName;
+	public String getSkillName() {
+		return skillName;
 	}
 
-	public void setLanguageName(String languageName) {
-		this.languageName = languageName;
-	}
-
-	public int getLanguageLevel() {
-		return languageLevel;
-	}
-
-	public void setLanguageLevel(int languageLevel) {
-		this.languageLevel = languageLevel;
+	public void setSkillName(String skillName) {
+		this.skillName = skillName;
 	}
 
 	public Portfolio getPortfolio() {
@@ -78,5 +66,4 @@ public class Language {
 	public void setPortfolioId(int portfolioId) {
 		this.portfolioId = portfolioId;
 	}
-	
 }

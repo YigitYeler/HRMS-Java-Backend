@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "portfolios")
 public class Portfolio {
@@ -21,29 +23,42 @@ public class Portfolio {
 	@OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Language> languages;
 	
+	@OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Skill> skills;
+	
 	@Column(name = "img_url")
 	private String imgUrl;
 	
-	@Column(name = "skills")
-	private Character[] skills;
+	/*@Column(name = "skills")
+	private Character[] skills;*/
 	
 	@Column(name = "intro")
 	private String intro;
+	
+	@Column(name = "job_seeker_id")
+	private int jobSeekerId;
+	
+	@ManyToOne
+	@JoinColumn(name = "job_seeker_id",updatable = false,insertable = false)
+	@JsonIgnore
+	private JobSeeker jobSeeker;
 	
 	public Portfolio() {
 		
 	}
 
 	public Portfolio(int id, List<Education> educations, List<Experience> experiences, List<Language> languages,
-			String imgUrl, Character[] skills, String intro) {
+			String imgUrl, String intro,JobSeeker jobSeeker,List<Skill> skills,int jobSeekerId) {
 		super();
 		this.id = id;
 		this.educations = educations;
 		this.experiences = experiences;
 		this.languages = languages;
 		this.imgUrl = imgUrl;
-		this.skills = skills;
 		this.intro = intro;
+		this.jobSeeker = jobSeeker;
+		this.skills = skills;
+		this.jobSeekerId = jobSeekerId;
 	}
 
 	public int getId() {
@@ -86,13 +101,13 @@ public class Portfolio {
 		this.imgUrl = imgUrl;
 	}
 
-	public Character[] getSkills() {
+	/*public Character[] getSkills() {
 		return skills;
 	}
 
 	public void setSkills(Character[] skills) {
 		this.skills = skills;
-	}
+	}*/
 
 	public String getIntro() {
 		return intro;
@@ -100,6 +115,30 @@ public class Portfolio {
 
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+
+	public JobSeeker getJobSeeker() {
+		return jobSeeker;
+	}
+
+	public void setJobSeeker(JobSeeker jobSeeker) {
+		this.jobSeeker = jobSeeker;
+	}
+
+	public List<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
+	}
+
+	public int getJobSeekerId() {
+		return jobSeekerId;
+	}
+
+	public void setJobSeekerId(int jobSeekerId) {
+		this.jobSeekerId = jobSeekerId;
 	}
 	
 }

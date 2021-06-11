@@ -17,6 +17,9 @@ public class Employer {
 	@Column(name="web_site_url")
 	private String webSiteUrl;
 	
+	@Column(name="emailVerify")
+	private boolean emailVerify = false;
+	
 	@Column(name="phone_number")
 	private String phoneNumber;
 
@@ -24,12 +27,13 @@ public class Employer {
 		
 	}
 	
-	public Employer(int id, String companyName, String webSiteUrl, String phoneNumber) {
+	public Employer(int id, String companyName, String webSiteUrl, String phoneNumber,boolean emailVerify) {
 		super();
 		this.id = id;
 		this.companyName = companyName;
 		this.webSiteUrl = webSiteUrl;
 		this.phoneNumber = phoneNumber;
+		this.emailVerify = emailVerify;
 	}
 
 	public int getId() {
@@ -62,6 +66,14 @@ public class Employer {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public boolean isEmailVerify() {
+		return emailVerify;
+	}
+
+	public void setEmailVerify(boolean emailVerify) {
+		this.emailVerify = emailVerify;
 	}
 	
 }
