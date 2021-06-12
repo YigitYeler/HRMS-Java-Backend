@@ -17,4 +17,6 @@ public interface JobAdDao extends JpaRepository<JobAd, Integer>{
 	@Transactional
     @Query("UPDATE JobAd j SET j.isActive = :isActive WHERE j.id = :id")
     int updateIsActive(@Param("id") int id, @Param("isActive") boolean isActive);
+	
+	JobAd getById(int id);
 }

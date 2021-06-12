@@ -3,6 +3,7 @@ package kodlamaio.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import kodlamaio.hrms.entities.concretes.JobAd;
 
 @RestController
 @RequestMapping("/api/jobads")
+@CrossOrigin
 public class JobAdsController {
 	
 	private JobAdService jobAdService;
@@ -55,5 +57,10 @@ public class JobAdsController {
 	@PostMapping("/updateIsActive")
 	public DataResult<Integer> updateIsActive(@RequestParam int id) {
 		return this.jobAdService.updateIsActive(id,false);
+	}
+	
+	@GetMapping("/getById")
+	public DataResult<JobAd> getById(@RequestParam int id) {
+		return this.jobAdService.getById(id);
 	}
 }

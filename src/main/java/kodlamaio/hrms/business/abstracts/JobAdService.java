@@ -13,4 +13,5 @@ public interface JobAdService {
 	DataResult<List<JobAd>> getAllSortedByDate();
 	DataResult<List<JobAd>> getByCompanyContainsNameAndIsActive(String companyName, boolean isActive);
 	DataResult<Integer> updateIsActive(int id, boolean isActive);
+	DataResult<JobAd> getById(int id);
 }

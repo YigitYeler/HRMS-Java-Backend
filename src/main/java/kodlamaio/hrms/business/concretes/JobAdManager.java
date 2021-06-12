@@ -62,4 +62,9 @@ public class JobAdManager implements JobAdService{
 		return new SuccessDataResult<Integer>(this.jobAdDao.updateIsActive(id, isActive),"Başarılı");
 	}
 
+	@Override
+	public DataResult<JobAd> getById(int id) {
+		return new SuccessDataResult<JobAd>(this.jobAdDao.getById(id), "İş İlanı Getirildi");
+	}
+
 }
