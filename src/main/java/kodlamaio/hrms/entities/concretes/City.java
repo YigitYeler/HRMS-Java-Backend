@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -22,6 +23,7 @@ public class City {
 	private String plateNumber;
 	
 	@OneToMany(mappedBy = "city")
+	@JsonIgnore
 	private List<JobAd> jobAds;
 
 	public City() {

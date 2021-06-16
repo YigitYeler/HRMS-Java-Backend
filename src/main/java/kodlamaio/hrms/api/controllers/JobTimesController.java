@@ -3,37 +3,36 @@ package kodlamaio.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.CityService;
+import kodlamaio.hrms.business.abstracts.JobTimeService;
 import kodlamaio.hrms.core.utilites.results.DataResult;
 import kodlamaio.hrms.core.utilites.results.Result;
-import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.JobTime;
 
 @RestController
-@RequestMapping("api/cities")
-@CrossOrigin
-public class CitiesController {
-	private CityService cityService;
+@RequestMapping(name = "api/jobTimes")
+public class JobTimesController {
+	
+	private JobTimeService jobTimeService;
 
 	@Autowired
-	public CitiesController(CityService cityService) {
+	public JobTimesController(JobTimeService jobTimeService) {
 		super();
-		this.cityService = cityService;
+		this.jobTimeService = jobTimeService;
 	}
-	
+
 	@GetMapping("/getAll")
-	public DataResult<List<City>> getAll(){
-		return this.cityService.getAll();
+	public DataResult<List<JobTime>> getAll() {
+		return this.jobTimeService.getAll();
 	}
-	
+
 	@PostMapping("/add")
-	public Result add(@RequestBody City city) {
-		return this.cityService.add(city);
+	public Result add(JobTime jobTime) {
+		// TODO Auto-generated method stub
+		return this.jobTimeService.add(jobTime);
 	}
 }

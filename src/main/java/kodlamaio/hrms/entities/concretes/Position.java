@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "job_positions")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAds"})
 public class Position {
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)

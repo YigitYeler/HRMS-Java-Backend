@@ -48,12 +48,21 @@ public class JobAd {
 	@JsonIgnore
 	private boolean hrmsVerify = false;
 	
+	@ManyToOne
+	@JoinColumn(name = "job_time_id")
+	private JobTime jobTime;
+	
+	@ManyToOne
+	@JoinColumn(name = "job_type_id")
+	private JobType jobType;
+	
 	public JobAd() {
 		
 	}
 	
 	public JobAd(int id, String companyName, String description, City city, int count, int minSalary,
-			int maxSalary, Date lastDate,boolean isActive,Position position,boolean hrmsVerify) {
+			int maxSalary, Date lastDate,boolean isActive,Position position,boolean hrmsVerify,
+			JobType jobType,JobTime jobTime) {
 		super();
 		this.id = id;
 		this.companyName = companyName;
@@ -66,6 +75,8 @@ public class JobAd {
 		this.isActive = isActive;
 		this.position = position;
 		this.hrmsVerify = hrmsVerify;
+		this.jobTime = jobTime;
+		this.jobType = jobType;
 	}
 
 	public int getId() {
@@ -154,5 +165,21 @@ public class JobAd {
 
 	public void setHrmsVerify(boolean hrmsVerify) {
 		this.hrmsVerify = hrmsVerify;
+	}
+
+	public JobTime getJobTime() {
+		return jobTime;
+	}
+
+	public void setJobTime(JobTime jobTime) {
+		this.jobTime = jobTime;
+	}
+
+	public JobType getJobType() {
+		return jobType;
+	}
+
+	public void setJobType(JobType jobType) {
+		this.jobType = jobType;
 	}
 }
