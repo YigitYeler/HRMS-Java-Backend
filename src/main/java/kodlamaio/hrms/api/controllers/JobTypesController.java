@@ -3,8 +3,10 @@ package kodlamaio.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +17,7 @@ import kodlamaio.hrms.entities.concretes.JobType;
 
 @RestController
 @RequestMapping("api/jobTypes")
+@CrossOrigin
 public class JobTypesController {
 	private JobTypeService jobTypeService;
 
@@ -30,7 +33,7 @@ public class JobTypesController {
 	}
 
 	@PostMapping("/add")
-	public Result add(JobType jobType) {
+	public Result add(@RequestBody JobType jobType) {
 		// TODO Auto-generated method stub
 		return this.jobTypeService.add(jobType);
 	}
